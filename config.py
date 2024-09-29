@@ -28,7 +28,7 @@ OWNER_ID = int(getenv("OWNER_ID", "6584789596"))
 # Your heroku app name
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 # Get it from http://dashboard.heroku.com/account
-HEROKU_API_KEY = getenv("HEROKU_API_KEY")
+HEROKU_API_KEY = getenv("HEROKU_API_KEY", "HRKU-6ff8038a-d86d-4ccd-a281-1f081dc5235b")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
