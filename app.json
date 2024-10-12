@@ -14,37 +14,37 @@
     "env": {
       "API_ID": {
         "description": "Get this value from https://my.telegram.org",
-        "value": "",
+        "value": "24097435",
         "required": true
       },
       "API_HASH": {
         "description": "Get this value from https://my.telegram.org",
-        "value": "",
+        "value": "a1749c234ffad95223adf2db3425d1fd",
         "required": true
       },
       "BOT_TOKEN": {
         "description": "A Bot's token from Botfather",
-        "value": "",
+        "value": "6999969950:AAFn04baO8x1RD100PJK1ixOrbtjRUPQcow",
         "required": true
       },
       "MONGO_DB_URI": {
         "description": "Get a mongodb url from https://cloud.mongodb.com.",
-        "value": "",
+        "value": "mongodb+srv://Zxcdc:zxchypernjqjjqv8762@cluster0.hcgtozy.mongodb.net/?retryWrites=true&w=majority",
         "required": true
       },
       "OWNER_ID": {
         "description": "The user id of user whom you would like to add as OWNER.",
-        "value": "",
+        "value": "6584789596",
         "required": true
       },
       "STRING_SESSION": {
         "description": "A Pyrogram v2 String Session from @StringFatherBot on Telegram.",
-        "value": "",
+        "value": "BQFvspsArGlSnc8NL0Uwgl1lB_GGjLdIZc-PBM89l6oQ1OjwbYr0uFgV5JoiDDC5yP0i9Blq8MQbaaPquU1AwTFIF-KJOtnqAOJVgcFt91TQXRQkNU4d8pKOcUUEOdhs5FG9WBu_6rq81pMuX9HG0fOnTUDyyrzKsUgxHgDGksdo77HhUpPR20ExxgjsyPKk_E75RdtrTaAReoAKon1Lap7arLJPM30C-dYQlOCHeCv7jwPIvxMh3ok4eaz3tQJDl7YpytXaG0AC2eBPE9bTaScWuqIIvhZ30AZECCXxWwLFFbr2Fo7VCPRafXw2fjAD-n7n5fvV5e7XAAmkx_4tAk_L1P_A8AAAAAHNgabnAA",
         "required": true
       },
       "HEROKU_API_KEY": {
         "description": "Your Heroku account's API key",
-        "value": "",
+        "value": "HRKU-6ff8038a-d86d-4ccd-a281-1f081dc5235b",
         "required": false
       },
       "HEROKU_APP_NAME": {
@@ -54,7 +54,7 @@
       },
       "LOGGER_ID": {
         "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Channel ki id mat daal dena bsdk.",
-        "value": "",
+        "value": "-1002078575375",
         "required": true
       }
     },
