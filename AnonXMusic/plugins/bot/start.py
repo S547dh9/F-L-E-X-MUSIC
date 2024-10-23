@@ -2,7 +2,7 @@ import time
 from pyrogram import filters
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from youtubesearchpython.__future__ import VideosSearch
+from youtubesearchpython.future import VideosSearch
 
 import config
 from AnonXMusic import app
@@ -28,25 +28,26 @@ async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
-        if name[0:4] == "help":
+        if name.startswith("help"):
             keyboard = help_pannel(_)
             return await message.reply_photo(
                 photo=config.START_IMG_URL,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
-        if name[0:3] == "sud":
+        elif name.startswith("sud"):
             await sudoers_list(client=client, message=message, _=_)
             if await is_on_off(2):
+                profile_link = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} started the bot to check <b>sudolist</b>.\n\n"
+                         f"<b>User ID:</b> <code>{message.from_user.id}</code>\n"
+                         f"<b>Username:</b> @{message.from_user.username}\n\nProfile: {profile_link}"
                 )
-            return
-        if name[0:3] == "inf":
+        elif name.startswith("inf"):
             m = await message.reply_text("🔎")
-            query = (str(name)).replace("info_", "", 1)
-            query = f"https://www.youtube.com/watch?v={query}"
+            query = name.replace("info_", "", 1)
             results = VideosSearch(query, limit=1)
             for result in (await results.next())["result"]:
                 title = result["title"]
@@ -66,7 +67,7 @@ async def start_pm(client, message: Message, _):
                     [
                         InlineKeyboardButton(text=_["S_B_8"], url=link),
                         InlineKeyboardButton(text=_["S_B_9"], url=config.SUPPORT_CHAT),
-                    ],
+                    ]
                 ]
             )
             await m.delete()
@@ -77,15 +78,20 @@ async def start_pm(client, message: Message, _):
                 reply_markup=key,
             )
             if await is_on_off(2):
+                profile_link = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
                 return await app.send_message(
                     chat_id=config.LOGGER_ID,
-                    text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                    text=f"{message.from_user.mention} started the bot to check <b>track information</b>.\n\n"
+                         f"<b>User ID:</b> <code>{message.from_user.id}</code>\n"
+                         f"<b>Username:</b> @{message.from_user.username}\n\nProfile: {profile_link}"
                 )
     else:
         out = private_panel(_)
+        profile_link = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
         await message.reply_photo(
             photo=config.START_IMG_URL,
             caption=_["start_2"].format(message.from_user.mention, app.mention),
+            reply_markup=InlineKeyboardMarkup(out),
         )
         await message.reply_text(
             text=_["start_3"].format(app.mention),
@@ -94,7 +100,9 @@ async def start_pm(client, message: Message, _):
         if await is_on_off(2):
             return await app.send_message(
                 chat_id=config.LOGGER_ID,
-                text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
+                text=f"{message.from_user.mention} started the bot.\n\n"
+                     f"<b>User ID:</b> <code>{message.from_user.id}</code>\n"
+                     f"<b>Username:</b> @{message.from_user.username}\n\nProfile: {profile_link}"
             )
 
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
